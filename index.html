@@ -1,11 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pinguverse</title>
+    <title>pingu help</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <h1>pinguverse demo site! nothing is here, stop reading :></h1>
+    <nav class="navbar">
+        <div class="logo">pinguhelp</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <button class="btn btn-primary">Sign In</button>
+    </nav>
+    <main>
+        <div class="banner">
+            <div class="banner-content">
+                <h1>pinguhelp</h1>
+                <p>Find cheap health and emergency services in your area!</p>
+                <div class="search-container">
+                    <form class="search-form" onsubmit="event.preventDefault();">
+                        <!-- <div class="input-group">
+                            <label for="keyword">What are you looking for today?</label>
+                            <input type="text" id="keyword" placeholder="Enter a need or keyword...">
+                        </div>
+                        <div class="divider"></div> -->
+                        <div class="input-group">
+                            <!-- <label for="location">Where?</label> -->
+                            <input type="text" id="location" placeholder="ZIP code" pattern="\d{5}" maxlength="5"
+                                title="Please enter a valid 5-digit ZIP code"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)">
+                        </div>
+                        <button type="submit" class="btn btn-search" aria-label="Search">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <section class="info-section">
+            <div class="info-container">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg>
+                    </div>
+                    <h3>Fast Assistance</h3>
+                    <p>Quickly locate the nearest health facilities and emergency services.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4" />
+                            <path d="M12 16h.01" />
+                        </svg>
+                    </div>
+                    <h3>Reliable Info</h3>
+                    <p>Information sourced from verified endpoints to ensure your safety.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                    </div>
+                    <h3>Affordable Care</h3>
+                    <p>Find options that suit your budget without compromising on quality.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">pinguverse</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p class="copyright">&copy; 2026 Pinguverse. All rights reserved.</p>
+        </div>
+    </footer>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB0ka2MdSENLIGX-43VwO4x0BR3mHq5sf4",
+            authDomain: "pinguhelp-53c26.firebaseapp.com",
+            projectId: "pinguhelp-53c26",
+            storageBucket: "pinguhelp-53c26.firebasestorage.app",
+            messagingSenderId: "724595316537",
+            appId: "1:724595316537:web:12781e515db4829cecfae8"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
 </body>
+
 </html>
