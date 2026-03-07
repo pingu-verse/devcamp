@@ -8,30 +8,31 @@ function handleSearch(event) {
     }
 }
 
-async function authLogin(username, password) {
+async function authLogin(email, password) {
     const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     });
     return response.json();
 }
 
-async function authRegister(username, password) {
+async function authRegister(email, full_name, password) {
     const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, full_name, password })
     });
     return response.json();
 }
 
 async function handleLogin() {
     const email = document.getElementById('email').value;
+    const full_name = document.getElementById('fullName').value;
     const password = document.getElementById('password').value;
 
     try {
@@ -40,7 +41,7 @@ async function handleLogin() {
 
         if (!loginResult.success) {
             // If login fails, seamlessly attempt to register the user
-            const registerResult = await authRegister(email, password);
+            const registerResult = await authRegister(email, full_name, password);
 
             if (registerResult.success) {
                 // If registration works, attempt login again to get the token
@@ -58,8 +59,9 @@ async function handleLogin() {
 
         // Login is successful here
         console.log('Authentication successful. Token:', loginResult.token);
+        localStorage.setItem('pinguToken', loginResult.token);
         alert('Login successful!');
-        closeModal();
+        window.location.href = 'app.html';
     } catch (err) {
         console.error('An error occurred during authentication:', err);
         alert('A network error occurred connecting to the auth service. Please check your connection.');
