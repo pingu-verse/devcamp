@@ -8,40 +8,40 @@ function handleSearch(event) {
     }
 }
 
-async function authLogin(email, password) {
+async function authLogin(username, password) {
     const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, password })
     });
     return response.json();
 }
 
-async function authRegister(email, full_name, password) {
+async function authRegister(username, email, password) {
     const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, full_name, password })
+        body: JSON.stringify({ username, email, password })
     });
     return response.json();
 }
 
 async function handleLogin() {
+    const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
-    const full_name = document.getElementById('fullName').value;
     const password = document.getElementById('password').value;
 
     try {
         // Attempt to login first
-        let loginResult = await authLogin(email, password);
+        let loginResult = await authLogin(username, password);
 
         if (!loginResult.success) {
             // If login fails, seamlessly attempt to register the user
-            const registerResult = await authRegister(email, full_name, password);
+            const registerResult = await authRegister(username, email, password);
 
             if (registerResult.success) {
                 // If registration works, attempt login again to get the token
