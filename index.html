@@ -31,7 +31,7 @@
                     Enter your ZIP code to begin:
                 </p>
                 <div class="search-container">
-                    <form class="search-form" onsubmit="event.preventDefault();">
+                    <form class="search-form" onsubmit="handleSearch(event)">
                         <!-- <div class="input-group">
                             <label for="keyword">What are you looking for today?</label>
                             <input type="text" id="keyword" placeholder="Enter a need or keyword...">
@@ -90,6 +90,39 @@
                 </div>
             </div>
         </section>
+
+        <!-- Login Popup Modal -->
+        <div id="login-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h2>Sign In</h2>
+                <p>Create an account to securely access local services.</p>
+
+                <form class="login-form" onsubmit="event.preventDefault(); alert('Login successful!');">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="turnstile-container">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAACnnZimyKFulhPjw"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Create
+                        Account</button>
+                </form>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -105,6 +138,29 @@
     </footer>
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script>
+        function handleSearch(event) {
+            event.preventDefault();
+            const zip = document.getElementById('location').value;
+            if (zip === '10001') {
+                document.getElementById('login-modal').style.display = 'flex';
+            } else {
+                alert('We are currently only supporting demo data for ZIP code 10001. Try that instead!');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // Close the modal if user clicks outside of it
+        window.onclick = function (event) {
+            const modal = document.getElementById('login-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 
 </html>
