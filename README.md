@@ -1,2 +1,2 @@
 # demo
-pingu chat pre-dev
+developer camp 2026
