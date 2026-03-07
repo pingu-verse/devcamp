@@ -9,7 +9,7 @@ function handleSearch(event) {
 }
 
 async function authLogin(username, password) {
-    const response = await fetch('http://localhost:8787/api/auth/login', {
+    const response = await fetch('http://pingu-help-workers-api.pinguverse.workers.dev/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ async function authLogin(username, password) {
 }
 
 async function authRegister(username, password) {
-    const response = await fetch('http://localhost:8787/api/auth/register', {
+    const response = await fetch('http://pingu-help-workers-api.pinguverse.workers.dev/api/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -33,19 +33,19 @@ async function authRegister(username, password) {
 async function handleLogin() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    
+
     try {
         // Attempt to login first
         let loginResult = await authLogin(email, password);
-        
+
         if (!loginResult.success) {
             // If login fails, seamlessly attempt to register the user
             const registerResult = await authRegister(email, password);
-            
+
             if (registerResult.success) {
                 // If registration works, attempt login again to get the token
                 loginResult = await authLogin(email, password);
-                
+
                 if (!loginResult.success) {
                     alert('Login failed after registration: ' + (loginResult.error || 'Unknown error'));
                     return;
@@ -55,7 +55,7 @@ async function handleLogin() {
                 return;
             }
         }
-        
+
         // Login is successful here
         console.log('Authentication successful. Token:', loginResult.token);
         alert('Login successful!');
