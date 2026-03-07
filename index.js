@@ -9,7 +9,7 @@ function handleSearch(event) {
 }
 
 async function authLogin(username, password) {
-    const response = await fetch('http://pingu-help-workers-api.pinguverse.workers.dev/api/auth/login', {
+    const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ async function authLogin(username, password) {
 }
 
 async function authRegister(username, password) {
-    const response = await fetch('http://pingu-help-workers-api.pinguverse.workers.dev/api/auth/register', {
+    const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
