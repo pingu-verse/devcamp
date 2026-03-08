@@ -1,3 +1,8 @@
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+}
+
 function handleSignInClick() {
     const zip = prompt('Please enter your ZIP code to continue:');
     if (zip === '10001') {

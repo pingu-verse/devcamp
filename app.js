@@ -1,3 +1,8 @@
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+}
+
 // Initialize Showdown converter
 const converter = new showdown.Converter({
     tables: true,
@@ -39,24 +44,86 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Contact bot API function
-async function contactBot(message) {
+// Function to get miako token
+async function getMiakoToken() {
     const token = localStorage.getItem('pinguToken');
-
     if (!token) {
         throw new Error('No authentication token');
     }
+
+    // Check if we have a cached miako token
+    const cachedToken = localStorage.getItem('miakoToken');
+    const tokenExpiry = localStorage.getItem('miakoTokenExpiry');
+
+    if (cachedToken && tokenExpiry && Date.now() < parseInt(tokenExpiry)) {
+        return cachedToken;
+    }
+
+    // Get new token
+    const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/miako/token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to get miako token: ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (!data.success || !data.token) {
+        throw new Error('Invalid miako token response');
+    }
+
+    // Cache the token for 15 minutes (900000 milliseconds)
+    localStorage.setItem('miakoToken', data.token);
+    localStorage.setItem('miakoTokenExpiry', (Date.now() + 900000).toString());
+
+    return data.token;
+}
+
+// Contact bot API function
+async function contactBot(message) {
+    const pinguToken = localStorage.getItem('pinguToken');
+    const miakoToken = await getMiakoToken();
 
     const response = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/chat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${pinguToken}`
         },
-        body: JSON.stringify({ message: message })
+        body: JSON.stringify({
+            message: message,
+            token: miakoToken
+        })
     });
 
     if (!response.ok) {
+        // If token is expired or invalid, try to get a new one
+        if (response.status === 401 || response.status === 403) {
+            localStorage.removeItem('miakoToken');
+            localStorage.removeItem('miakoTokenExpiry');
+            const newMiakoToken = await getMiakoToken();
+            const retryResponse = await fetch('https://pingu-help-workers-api.pinguverse.workers.dev/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${pinguToken}`
+                },
+                body: JSON.stringify({
+                    message: message,
+                    token: newMiakoToken
+                })
+            });
+            if (!retryResponse.ok) {
+                throw new Error(`HTTP error! status: ${retryResponse.status}`);
+            }
+            const retryData = await retryResponse.json();
+            return retryData.response || "I'm sorry, I didn't understand that. Could you rephrase your question?";
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
     }
 
