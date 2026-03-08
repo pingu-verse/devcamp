@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agapay</title>
+    <title>agapay - About</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,48 +14,24 @@
 
 <body>
     <nav class="navbar">
-        <div class="logo"><a href="#">agapay</a></div>
+        <div class="logo"><a href="index.html">agapay</a></div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="app.html">Chat</a></li>
             <li><a href="about.html">About</a></li>
         </ul>
         <div id="auth-section">
-            <button class="btn btn-primary" onclick="handleSignInClick()">Sign
-                In</button>
+            <button class="btn btn-primary" onclick="handleSignInClick()">Sign In</button>
         </div>
     </nav>
     <main>
         <div class="banner">
             <div class="banner-content">
-                <h1>agapay</h1>
+                <h1>About agapay</h1>
                 <p>
-                    Find cheap health and emergency services in your area.
-                    <br>
-                    Enter your ZIP code to begin:
+                    We are dedicated to helping you find affordable health and emergency services in your area quickly
+                    and easily.
                 </p>
-                <div class="search-container">
-                    <form class="search-form" onsubmit="handleSearch(event)">
-                        <!-- <div class="input-group">
-                            <label for="keyword">What are you looking for today?</label>
-                            <input type="text" id="keyword" placeholder="Enter a need or keyword...">
-                        </div>
-                        <div class="divider"></div> -->
-                        <div class="input-group">
-                            <!-- <label for="location">Where?</label> -->
-                            <input type="text" id="location" placeholder="ZIP code" pattern="\d{5}" maxlength="5"
-                                title="Please enter a valid 5-digit ZIP code"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)">
-                        </div>
-                        <button type="submit" class="btn btn-search" aria-label="Search">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                        </button>
-                    </form>
-                </div>
             </div>
         </div>
         <section class="info-section">
@@ -64,34 +40,59 @@
                     <div class="info-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                     </div>
-                    <h3>Fast Assistance</h3>
-                    <p>Quickly locate the nearest health facilities and emergency services.</p>
+                    <h3>Our Mission</h3>
+                    <p>To make healthcare accessible and affordable for everyone, by providing a simple way to find the
+                        right services in your area.</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M12 8v4" />
-                            <path d="M12 16h.01" />
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                         </svg>
                     </div>
-                    <h3>Reliable Info</h3>
-                    <p>Information sourced from verified endpoints to ensure your safety.</p>
+                    <h3>What We Do</h3>
+                    <p>We aggregate information from various healthcare providers and emergency services to help you
+                        find the best options based on your needs and location.</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 8v4"></path>
+                            <path d="M12 16h.01"></path>
                         </svg>
                     </div>
-                    <h3>Affordable Care</h3>
-                    <p>Find options that suit your budget without compromising on quality.</p>
+                    <h3>How It Works</h3>
+                    <p>Enter your ZIP code and we'll show you a list of available health and emergency services in your
+                        area, along with their prices and ratings.</p>
                 </div>
+            </div>
+        </section>
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2>Get In Touch</h2>
+                <p>If you have any questions or feedback, please feel free to reach out to us using the form below.</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
             </div>
         </section>
 
@@ -169,6 +170,85 @@
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script src="index.js"></script>
+    <style>
+        .contact-section {
+            padding: 5rem 2rem;
+            background-color: var(--bg-card);
+            display: flex;
+            justify-content: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .contact-container p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            text-align: left;
+            background: var(--bg-main);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn-primary {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+    </style>
 </body>
 
 </html>

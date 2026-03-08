@@ -56,8 +56,12 @@ hr {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
     letter-spacing: -0.5px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
 .nav-links {
@@ -94,6 +98,20 @@ hr {
 .btn-primary:hover {
     background-color: var(--primary-hover);
     transform: translateY(-1px);
+}
+
+.username-display {
+    margin-right: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+#auth-section {
+    display: flex;
+    align-items: center;
 }
 
 /* Banner */
@@ -455,4 +473,62 @@ hr {
 .form-group input:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Step Indicators */
+.step-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-main);
+    border: 2px solid var(--border-color);
+    color: var(--text-muted);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.step-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.step-indicator.active .step-number {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.step-indicator.active .step-label {
+    color: var(--text-main);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-main);
+    border-color: var(--text-muted);
 }
